@@ -1,0 +1,25 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:avaloniaProgressRing="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
+             mc:Ignorable="d"
+             d:DesignWidth="200" d:DesignHeight="600"
+             Width="350" Height="750"
+             MinWidth="350"
+             x:Class="PlexWrapped.Views.PlexLoginPage">
+    <StackPanel  VerticalAlignment="Center"
+                 HorizontalAlignment="Center">
+        <Button
+           
+            x:Name="SignInWithPlexButton">
+            Sign In with PLEX
+        </Button>
+        <avaloniaProgressRing:ProgressRing
+            x:Name="Loader"
+            Width="40"
+            Height="40"
+            IsActive="True"
+            Foreground="#0066CC" />
+    </StackPanel>
+</UserControl>

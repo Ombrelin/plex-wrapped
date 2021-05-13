@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlexWrapped", "PlexWrapped\PlexWrapped.csproj", "{5406E990-81F8-4972-8115-86D69E30373D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlexApi", "PlexApi\PlexApi.csproj", "{52582BC1-5E5E-4983-B438-98FE38673879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlexApi.Test", "PlexApi.Test\PlexApi.Test.csproj", "{9E70FAF0-8D23-4F83-AC1A-598A9BC0D52F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5406E990-81F8-4972-8115-86D69E30373D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5406E990-81F8-4972-8115-86D69E30373D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5406E990-81F8-4972-8115-86D69E30373D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5406E990-81F8-4972-8115-86D69E30373D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52582BC1-5E5E-4983-B438-98FE38673879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52582BC1-5E5E-4983-B438-98FE38673879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52582BC1-5E5E-4983-B438-98FE38673879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52582BC1-5E5E-4983-B438-98FE38673879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E70FAF0-8D23-4F83-AC1A-598A9BC0D52F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E70FAF0-8D23-4F83-AC1A-598A9BC0D52F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E70FAF0-8D23-4F83-AC1A-598A9BC0D52F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E70FAF0-8D23-4F83-AC1A-598A9BC0D52F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

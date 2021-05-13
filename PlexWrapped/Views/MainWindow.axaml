@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PlexWrapped.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:reactiveUi="http://reactiveui.net"
+        mc:Ignorable="d"  d:DesignWidth="200" d:DesignHeight="600"
+        Width="350" Height="750"
+        MinWidth="350"
+        x:Class="PlexWrapped.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="PlexWrapped">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <reactiveUi:RoutedViewHost Grid.Row="0" Router="{Binding Router}">
+        <reactiveUi:RoutedViewHost.DefaultContent>
+            <TextBlock Text="Error navigating to first page"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+        </reactiveUi:RoutedViewHost.DefaultContent>
+    </reactiveUi:RoutedViewHost>
+</Window>
