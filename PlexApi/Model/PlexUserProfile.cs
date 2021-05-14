@@ -7,7 +7,6 @@
         public string Username { get; set; }
         public string Title { get; set; }
         public string Email { get; set; }
-        public object Locale { get; set; }
         public bool Confirmed { get; set; }
         public bool EmailOnlyAuth { get; set; }
         public bool HasPassword { get; set; }
@@ -21,7 +20,6 @@
         public string Pin { get; set; }
         public string SubscriptionDescription { get; set; }
         public bool Restricted { get; set; }
-        public object Anonymous { get; set; }
         public bool Home { get; set; }
         public bool Guest { get; set; }
         public int HomeSize { get; set; }

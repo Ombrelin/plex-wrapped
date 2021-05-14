@@ -7,7 +7,7 @@ using Xunit;
 
 namespace PlexApi.Test
 {
-    public class CreatePinFakeHandler : FakeHandler
+    public class PlexApiFakeHandler : FakeHandler
     {
         public override HttpResponseMessage SendAsync(HttpMethod method, string url)
         {
@@ -19,10 +19,56 @@ namespace PlexApi.Test
             {
                 return ValidatePin(url);
             }
+            else if (method == HttpMethod.Get && url.Contains("/api/v2/user.json"))
+            {
+                return GetUser(url);
+            }
 
             return new HttpResponseMessage()
             {
                 StatusCode = HttpStatusCode.BadRequest
+            };
+        }
+
+        private HttpResponseMessage GetUser(string url)
+        {
+
+            Assert.Contains("X-Plex-Token=plexauthtoken", url);
+            
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(
+                    JsonSerializer.Serialize(new PlexUserProfile
+                    {
+                        Id = 123456789,
+                        AuthToken = "plexauthtoken",
+                        Confirmed = false,
+                        Country = "FR",
+                        Email = "user@provider.com",
+                        Guest = false,
+                        Home = true,
+                        Pin = "pinid",
+                        Protected = true,
+                        Restricted = false,
+                        Thumb = "thumbnail url",
+                        Title = "User Full Name",
+                        Username = "User name",
+                        Uuid = Guid.NewGuid().ToString(),
+                        CertificateVersion = 3,
+                        HasPassword = true,
+                        HomeAdmin = true,
+                        HomeSize = 5,
+                        ScrobbleTypes = "",
+                        SubscriptionDescription = "Lifetime Plex Pass",
+                        EmailOnlyAuth = false,
+                        MailingListActive = true,
+                        MailingListStatus = "active",
+                        MaxHomeSize = 15,
+                        RememberExpiresAt = 1622209087
+
+
+                    }))
             };
         }
 
@@ -44,7 +90,7 @@ namespace PlexApi.Test
                         ExpiresIn = 1897,
                         CreatedAt = DateTime.Now,
                         ExpiresAt = DateTime.Now,
-                        AuthToken = "plex auth token",
+                        AuthToken = "plexauthtoken",
                         NewRegistration = null
                     }))
             };

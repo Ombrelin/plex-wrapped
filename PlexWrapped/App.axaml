@@ -4,5 +4,6 @@
              x:Class="PlexWrapped.App">
     <Application.Styles>
         <FluentTheme Mode="Dark"/>
+        <StyleInclude Source="avares://AvaloniaProgressRing/Styles/ProgressRing.xaml"/>
     </Application.Styles>
 </Application>

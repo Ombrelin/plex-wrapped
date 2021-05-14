@@ -1,0 +1,45 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:avaloniaProgressRing="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PlexWrapped.Views.UserProfilePage">
+    
+    <StackPanel  VerticalAlignment="Center"
+                 HorizontalAlignment="Center">
+        <TextBlock
+            TextAlignment="Center"
+        >
+            You are logged in as :
+        </TextBlock>
+        <TextBlock
+            TextAlignment="Center"
+            x:Name="UsernameTextBlock">
+        </TextBlock>
+        <TextBlock
+            TextAlignment="Center"
+            x:Name="UserEmailTextBlock">
+        </TextBlock>
+        <Image
+            x:Name="ProfileImage"
+        ></Image>
+        <avaloniaProgressRing:ProgressRing
+            x:Name="Loader"
+            Width="40"
+            Height="40"
+            IsActive="True"
+            Foreground="#0066CC" />
+        <Button
+            VerticalAlignment="Center"
+           Margin="0,16,0,0"
+            Background="#0066CC"
+            Width="200"
+            
+            x:Name="StartButton">
+            <TextBlock TextAlignment="Center">Start Wrapped</TextBlock>
+            
+        </Button>
+    </StackPanel>
+    
+</UserControl>

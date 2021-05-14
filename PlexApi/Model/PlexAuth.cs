@@ -12,7 +12,7 @@ namespace PlexApi.Model
         public int ExpiresIn { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ExpiresAt { get; set; }
-        public object AuthToken { get; set; }
+        public string AuthToken { get; set; }
         public object NewRegistration { get; set; }
     }
 }

@@ -18,5 +18,8 @@ namespace PlexApi.PlexTv
             [AliasAs("pinId")] int pinId,
             [AliasAs("X-Plex-Client-Identifier")] string clientId
         );
+
+        [Get("/api/v2/user.json")]
+        Task<PlexUserProfile> GetProfile([AliasAs("X-Plex-Token")] string token);
     }
 }

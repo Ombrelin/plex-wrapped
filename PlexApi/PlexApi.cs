@@ -12,6 +12,7 @@ namespace PlexApi
     {
         private readonly IBrowserOpener browserOpener;
         private readonly IPlexTvApi plexTvApi;
+        private string plexAuthToken;
         
         public PlexClientApi(HttpClient client, IBrowserOpener browserOpener)
         {
@@ -35,12 +36,10 @@ namespace PlexApi
                 pinValidated = plexAuth.AuthToken != null;
             }
 
+            this.plexAuthToken = plexAuth.AuthToken;
             return plexAuth;
         }
 
-        public Task<PlexUserProfile> GetProfile(string plexUserAuthToken)
-        {
-            throw new System.NotImplementedException();
-        }
+        public Task<PlexUserProfile> GetProfile() => this.plexTvApi.GetProfile(this.plexAuthToken);
     }
 }

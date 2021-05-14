@@ -7,6 +7,6 @@ namespace PlexApi
     public interface IPlexApi
     {
         Task<PlexAuth> Authenticate(string productName, string clientId);
-        Task<PlexUserProfile> GetProfile(string plexUserAuthToken);
+        Task<PlexUserProfile> GetProfile();
     }
 }

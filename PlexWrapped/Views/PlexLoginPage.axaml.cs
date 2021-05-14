@@ -24,17 +24,18 @@ namespace PlexWrapped.Views
                     v => v.SignInWithPlexButton)
                     .DisposeWith(disposables);
 
-                ViewModel
-                    .PlexLoginCommand
-                    .IsExecuting
-                    .Select(NotConverter)
-                    .BindTo(this, x => x.SignInWithPlexButton.IsVisible);
+                this.OneWayBind(
+                    ViewModel,
+                    vm => vm.IsLoggingIn,
+                    v => v.SignInWithPlexButton.IsVisible,
+                    NotConverter
+                    ).DisposeWith(disposables);
                 
-                ViewModel
-                    .PlexLoginCommand
-                    .IsExecuting
-                    .Select(NotConverter)
-                    .BindTo(this, x => x.Loader.IsVisible);
+                this.OneWayBind(
+                    ViewModel,
+                    vm => vm.IsLoggingIn,
+                    v => v.Loader.IsVisible)
+                    .DisposeWith(disposables);
             });
             InitializeComponent();
         }

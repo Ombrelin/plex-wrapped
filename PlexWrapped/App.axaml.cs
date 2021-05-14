@@ -17,6 +17,7 @@ namespace PlexWrapped
         {
             AvaloniaXamlLoader.Load(this);
             Locator.CurrentMutable.Register(() => new PlexLoginPage(), typeof(IViewFor<PlexLoginViewModel>));
+            Locator.CurrentMutable.Register(() => new UserProfilePage(), typeof(IViewFor<UserProfileViewModel>));
         }
 
         public override void OnFrameworkInitializationCompleted()
