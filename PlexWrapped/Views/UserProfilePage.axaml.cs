@@ -49,18 +49,17 @@ namespace PlexWrapped.Views
                 
                 // Image
                 
-                this.OneWayBind(
-                    ViewModel,
-                    vm => vm.IsFetchingPlexUser,
-                    v => v.ProfileImage.IsVisible,
-                    NotConverter
-                ).DisposeWith(disposables);
+                // this.OneWayBind(
+                //     ViewModel,
+                //     vm => vm.IsFetchingPlexUser,
+                //     v => v.ProfileImage.IsVisible,
+                //     NotConverter
+                // ).DisposeWith(disposables);
                 
                 this.OneWayBind(
                     ViewModel,
-                    vm => vm.UserProfileImageUrl,
-                    v => v.ProfileImage.Source,
-                    ImageConverter
+                    vm => vm.UserProfileImage,
+                    v => v.ProfileImage.Source
                 ).DisposeWith(disposables);
                 
                 // Loader
@@ -81,12 +80,7 @@ namespace PlexWrapped.Views
             });
             InitializeComponent();
         }
-
-        private IImage ImageConverter(string arg)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         private bool NotConverter(bool val) => !val;
         private void InitializeComponent()
         {

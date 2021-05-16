@@ -1,5 +1,10 @@
-﻿using System.Reactive;
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Reactive;
 using System.Threading.Tasks;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using PlexApi;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -18,7 +23,7 @@ namespace PlexWrapped.ViewModels
 
         [Reactive] public string UserFullname { get; set; } = "";
         [Reactive] public string UserEmail { get; set; } = "";
-        [Reactive] public string UserProfileImageUrl { get; set; } = "";
+        [Reactive] public IImage UserProfileImage { get; set; }
 
         
         public UserProfileViewModel(IScreen hostScreen, IPlexApi plexApi)
@@ -36,10 +41,9 @@ namespace PlexWrapped.ViewModels
             var profile = await plexApi.GetProfile();
             this.UserFullname = profile.Username;
             this.UserEmail = profile.Email;
-            this.UserProfileImageUrl = profile.Thumb;
+
+            using WebClient client = new();
+            this.UserProfileImage = new Bitmap(new MemoryStream(client.DownloadData(profile.Thumb)));
         }
-
-      
-
     }
 }

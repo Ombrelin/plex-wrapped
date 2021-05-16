@@ -22,6 +22,8 @@
             x:Name="UserEmailTextBlock">
         </TextBlock>
         <Image
+            Width="100"
+            Height="100"
             x:Name="ProfileImage"
         ></Image>
         <avaloniaProgressRing:ProgressRing
