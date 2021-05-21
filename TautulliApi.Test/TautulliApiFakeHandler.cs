@@ -1,0 +1,248 @@
+﻿using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace TautulliApi.Test
+{
+    public class TautulliApiFakeHandler : HttpClientHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
+        {
+            Assert.Contains("/api/v2", request.RequestUri.PathAndQuery);
+            Assert.Contains("fakeurl.com", request.RequestUri.Host);
+            Assert.Contains("apikey=tautulliapikey", request.RequestUri.PathAndQuery);
+            Assert.Contains("cmd=get_history", request.RequestUri.PathAndQuery);
+            var response = new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(@"
+                        {
+                          ""response"": {
+                            ""result"": ""success"",
+                            ""message"": null,
+                            ""data"": {
+                              ""recordsFiltered"": 8353,
+                              ""recordsTotal"": 11663,
+                              ""data"": [
+                                {
+                                  ""reference_id"": 11639,
+                                  ""row_id"": 11663,
+                                  ""id"": 11663,
+                                  ""date"": 1590069474,
+                                  ""started"": 1621463603,
+                                  ""stopped"": 1621554094,
+                                  ""duration"": 4913,
+                                  ""paused_counter"": 8360,
+                                  ""user_id"": 20966963,
+                                  ""user"": ""Arsène Lapostolet"",
+                                  ""friendly_name"": ""Arsène Lapostolet"",
+                                  ""platform"": ""Android"",
+                                  ""product"": ""Plex for Android (Mobile)"",
+                                  ""player"": ""Fairphone3"",
+                                  ""ip_address"": ""ip address"",
+                                  ""live"": 0,
+                                  ""machine_id"": ""id"",
+                                  ""media_type"": ""movie"",
+                                  ""rating_key"": 19076,
+                                  ""parent_rating_key"": """",
+                                  ""grandparent_rating_key"": """",
+                                  ""full_title"": ""2010 the Year We Make Contact"",
+                                  ""title"": ""2010 the Year We Make Contact"",
+                                  ""parent_title"": """",
+                                  ""grandparent_title"": """",
+                                  ""original_title"": """",
+                                  ""year"": 1984,
+                                  ""media_index"": """",
+                                  ""parent_media_index"": """",
+                                  ""thumb"": ""/library/metadata/19076/thumb/1621419924"",
+                                  ""originally_available_at"": """",
+                                  ""guid"": ""local://19076"",
+                                  ""transcode_decision"": ""direct play"",
+                                  ""percent_complete"": 32,
+                                  ""watched_status"": 0,
+                                  ""group_count"": 2,
+                                  ""group_ids"": ""11639,11663"",
+                                  ""state"": null,
+                                  ""session_key"": null
+                                },
+                                {
+                                  ""reference_id"": 11660,
+                                  ""row_id"": 11660,
+                                  ""id"": 11660,
+                                  ""date"": 1621528156,
+                                  ""started"": 1621528156,
+                                  ""stopped"": 1621528533,
+                                  ""duration"": 182,
+                                  ""paused_counter"": 195,
+                                  ""user_id"": 17074161,
+                                  ""user"": ""Arsène Lapostolet"",
+                                  ""friendly_name"": ""Arsène Lapostolet"",
+                                  ""platform"": ""Android"",
+                                  ""product"": ""Plexamp"",
+                                  ""player"": ""Android"",
+                                  ""ip_address"": ""ip address"",
+                                  ""live"": 0,
+                                  ""machine_id"": ""machine id"",
+                                  ""media_type"": ""track"",
+                                  ""rating_key"": 13800,
+                                  ""parent_rating_key"": 13799,
+                                  ""grandparent_rating_key"": 13720,
+                                  ""full_title"": ""Le Combat ordinaire - Les Fatals Picards"",
+                                  ""title"": ""Le Combat ordinaire"",
+                                  ""parent_title"": ""Le Sens de la gravité"",
+                                  ""grandparent_title"": ""Les Fatals Picards"",
+                                  ""original_title"": """",
+                                  ""year"": 2009,
+                                  ""media_index"": 1,
+                                  ""parent_media_index"": 1,
+                                  ""thumb"": ""/library/metadata/13799/thumb/1604342328"",
+                                  ""originally_available_at"": """",
+                                  ""guid"": ""plex://track/5d07d71f403c640290aaf2eb"",
+                                  ""transcode_decision"": ""direct play"",
+                                  ""percent_complete"": 81,
+                                  ""watched_status"": 0.5,
+                                  ""group_count"": 1,
+                                  ""group_ids"": ""11660"",
+                                  ""state"": null,
+                                  ""session_key"": null
+                                },
+                                {
+                                  ""reference_id"": 11659,
+                                  ""row_id"": 11659,
+                                  ""id"": 11659,
+                                  ""date"": 1621527925,
+                                  ""started"": 1621527925,
+                                  ""stopped"": 1621528060,
+                                  ""duration"": 135,
+                                  ""paused_counter"": 0,
+                                  ""user_id"": 17074161,
+                                  ""user"": ""Arsène Lapostolet"",
+                                  ""friendly_name"": ""Arsène Lapostolet"",
+                                  ""platform"": ""Android"",
+                                  ""product"": ""Plexamp"",
+                                  ""player"": ""Android"",
+                                  ""ip_address"": ""92.184.116.86"",
+                                  ""live"": 0,
+                                  ""machine_id"": ""1ee07c7f-db3c-42f1-b0b0-e0b6032597c6"",
+                                  ""media_type"": ""movie"",
+                                  ""rating_key"": 13783,
+                                  ""parent_rating_key"": 13767,
+                                  ""grandparent_rating_key"": 13720,
+                                  ""full_title"": ""Et puis merde, je vote à droite ! - Les Fatals Picards"",
+                                  ""title"": ""Et puis merde, je vote à droite !"",
+                                  ""parent_title"": ""Pamplemousse mécanique"",
+                                  ""grandparent_title"": ""Les Fatals Picards"",
+                                  ""original_title"": """",
+                                  ""year"": 2007,
+                                  ""media_index"": 16,
+                                  ""parent_media_index"": 1,
+                                  ""thumb"": ""/library/metadata/13767/thumb/1620705905"",
+                                  ""originally_available_at"": """",
+                                  ""guid"": ""plex://track/5d07d39e403c64029071656d"",
+                                  ""transcode_decision"": ""direct play"",
+                                  ""percent_complete"": 73,
+                                  ""watched_status"": 0.5,
+                                  ""group_count"": 1,
+                                  ""group_ids"": ""11659"",
+                                  ""state"": null,
+                                  ""session_key"": null
+                                },
+
+                                {
+                                  ""reference_id"": 11639,
+                                  ""row_id"": 11663,
+                                  ""id"": 11663,
+                                  ""date"": 1621541854,
+                                  ""started"": 1621463603,
+                                  ""stopped"": 1621554094,
+                                  ""duration"": 4913,
+                                  ""paused_counter"": 8360,
+                                  ""user_id"": 20966963,
+                                  ""user"": ""test@test.fr"",
+                                  ""friendly_name"": ""test@test.fr"",
+                                  ""platform"": ""Android"",
+                                  ""product"": ""Plex for Android (Mobile)"",
+                                  ""player"": ""Fairphone3"",
+                                  ""ip_address"": ""ip address"",
+                                  ""live"": 0,
+                                  ""machine_id"": ""id"",
+                                  ""media_type"": ""movie"",
+                                  ""rating_key"": 19076,
+                                  ""parent_rating_key"": """",
+                                  ""grandparent_rating_key"": """",
+                                  ""full_title"": ""2010 the Year We Make Contact"",
+                                  ""title"": ""2010 the Year We Make Contact"",
+                                  ""parent_title"": """",
+                                  ""grandparent_title"": """",
+                                  ""original_title"": """",
+                                  ""year"": 1984,
+                                  ""media_index"": """",
+                                  ""parent_media_index"": """",
+                                  ""thumb"": ""/library/metadata/19076/thumb/1621419924"",
+                                  ""originally_available_at"": """",
+                                  ""guid"": ""local://19076"",
+                                  ""transcode_decision"": ""direct play"",
+                                  ""percent_complete"": 32,
+                                  ""watched_status"": 0,
+                                  ""group_count"": 2,
+                                  ""group_ids"": ""11639,11663"",
+                                  ""state"": null,
+                                  ""session_key"": null
+                                },
+                                {
+                                  ""reference_id"": 11662,
+                                  ""row_id"": 11662,
+                                  ""id"": 11662,
+                                  ""date"": 1621534993,
+                                  ""started"": 1621534993,
+                                  ""stopped"": 1621541128,
+                                  ""duration"": 5892,
+                                  ""paused_counter"": 243,
+                                  ""user_id"": 20966963,
+                                  ""user"": ""test@test.fr"",
+                                  ""friendly_name"": ""test@test.fr"",
+                                  ""platform"": ""Plex Media Player"",
+                                  ""product"": ""Plex Media Player"",
+                                  ""player"": ""DESKTOP-M06GP5L"",
+                                  ""ip_address"": ""192.168.10.45"",
+                                  ""live"": 0,
+                                  ""machine_id"": ""machine id"",
+                                  ""media_type"": ""movie"",
+                                  ""rating_key"": 19071,
+                                  ""parent_rating_key"": """",
+                                  ""grandparent_rating_key"": """",
+                                  ""full_title"": ""Little Odessa"",
+                                  ""title"": ""Little Odessa"",
+                                  ""parent_title"": """",
+                                  ""grandparent_title"": """",
+                                  ""original_title"": """",
+                                  ""year"": 1994,
+                                  ""media_index"": """",
+                                  ""parent_media_index"": """",
+                                  ""thumb"": ""/library/metadata/19071/thumb/1621418083"",
+                                  ""originally_available_at"": ""1994-10-27"",
+                                  ""guid"": ""com.plexapp.agents.imdb://tt0110365?lang=fr"",
+                                  ""transcode_decision"": ""direct play"",
+                                  ""percent_complete"": 100,
+                                  ""watched_status"": 1,
+                                  ""group_count"": 1,
+                                  ""group_ids"": ""11662"",
+                                  ""state"": null,
+                                  ""session_key"": null
+                                }
+                               ]
+                            }
+                        }
+                    }
+                    ")
+            };
+            response.Headers.Add("ContentType", "application/json");
+            return Task.FromResult(response);
+        }
+    }
+}
