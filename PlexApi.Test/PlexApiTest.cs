@@ -76,5 +76,31 @@ namespace PlexApi.Test
             Assert.Equal(15, result.MaxHomeSize);
             Assert.Equal(1622209087, result.RememberExpiresAt);
         }
+
+        [Fact]
+        public async Task GetServers()
+        {
+            // Given
+            PlexClientApi api = new PlexClientApi(new HttpClient(new PlexApiFakeHandler()), browserOpener);
+            await api.Authenticate("AppName","clientUniqueId");
+            
+            // When
+            var result = await api.GetServers();
+            
+            // Then
+            Assert.Single(result);
+            Assert.Equal("plexauthtoken",result[0].AccessToken);
+            Assert.Equal("VOSTOK",result[0].Name);
+            Assert.Equal("ip address",result[0].Address);
+            Assert.Equal(1,result[0].Port);
+            Assert.Equal("1.23.0.4497-a1b1f3c10",result[0].Version);
+            Assert.Equal("http",result[0].Scheme);
+            Assert.Equal("ip address",result[0].Host);
+            Assert.Equal("ipaddress1,ipaddress2",result[0].LocalAddresses);
+            Assert.Equal("machineid",result[0].MachineIdentifier);
+            Assert.Equal(1590584258,result[0].CreatedAt);
+            Assert.Equal(1621708154,result[0].UpdatedAt);
+            Assert.True(result[0].IsOwned);
+        }
     }
 }

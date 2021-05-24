@@ -21,5 +21,7 @@ namespace PlexApi.PlexTv
 
         [Get("/api/v2/user.json")]
         Task<PlexUserProfile> GetProfile([AliasAs("X-Plex-Token")] string token);
+        [Get("/pms/servers.xml")]
+        Task<ServerList> GetServers([AliasAs("X-Plex-Token")] string token);
     }
 }

@@ -8,6 +8,7 @@ using PlexWrapped.ViewModels;
 using PlexWrapped.Views;
 using ReactiveUI;
 using Splat;
+using TautulliApi;
 
 namespace PlexWrapped
 {
@@ -18,6 +19,7 @@ namespace PlexWrapped
             AvaloniaXamlLoader.Load(this);
             Locator.CurrentMutable.Register(() => new PlexLoginPage(), typeof(IViewFor<PlexLoginViewModel>));
             Locator.CurrentMutable.Register(() => new UserProfilePage(), typeof(IViewFor<UserProfileViewModel>));
+            Locator.CurrentMutable.Register(() => new ArtistsPage(), typeof(IViewFor<ArtistsViewModel>));
         }
 
         public override void OnFrameworkInitializationCompleted()

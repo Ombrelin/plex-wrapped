@@ -23,10 +23,29 @@ namespace PlexApi.Test
             {
                 return GetUser(url);
             }
+            else if (method == HttpMethod.Get && url.Contains("pms/servers.xml"))
+            {
+                return GetServers(url);
+            }
 
             return new HttpResponseMessage()
             {
                 StatusCode = HttpStatusCode.BadRequest
+            };
+        }
+
+        private HttpResponseMessage GetServers(string url)
+        {
+            Assert.Contains("X-Plex-Token=plexauthtoken", url);
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(@"
+                    <?xml version=""1.0"" encoding=""utf-16""?>
+                    <MediaContainer friendlyName=""myPlex"" identifier=""com.plexapp.plugins.myplex"" machineIdentifier=""c62be90a37d43ecd9596be8abd98a2e485979e31"" size=""2"">
+                      <Server accessToken=""plexauthtoken"" name=""VOSTOK"" address=""ip address"" port=""1"" version=""1.23.0.4497-a1b1f3c10"" scheme=""http"" host=""ip address"" localAddresses=""ipaddress1,ipaddress2"" machineIdentifier=""machineid"" createdAt=""1590584258"" updatedAt=""1621708154"" owned=""1"" synced=""0"" />
+                      </MediaContainer >
+                ")
             };
         }
 

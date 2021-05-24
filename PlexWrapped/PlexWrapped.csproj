@@ -19,5 +19,6 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\PlexApi\PlexApi.csproj" />
+      <ProjectReference Include="..\TautulliApi\TautulliApi.csproj" />
     </ItemGroup>
 </Project>

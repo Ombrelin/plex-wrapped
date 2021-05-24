@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlexApi.Model;
 
@@ -8,5 +9,6 @@ namespace PlexApi
     {
         Task<PlexAuth> Authenticate(string productName, string clientId);
         Task<PlexUserProfile> GetProfile();
+        Task<List<Server>> GetServers();
     }
 }
