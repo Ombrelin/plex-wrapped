@@ -77,6 +77,11 @@ namespace PlexWrapped.Views
                     v => v.StartButton.IsVisible,
                     NotConverter
                 ).DisposeWith(disposables);
+                
+                this.BindCommand(ViewModel,
+                        vm => vm.StartWrappedCommand,
+                        v => v.StartButton)
+                    .DisposeWith(disposables);
             });
             InitializeComponent();
         }

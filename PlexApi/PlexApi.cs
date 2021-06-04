@@ -16,13 +16,14 @@ namespace PlexApi
         private readonly IPlexTvApi plexTvApiJson;
         private readonly IPlexTvApi plexTvApiXml;
         private string plexAuthToken;
-        
+
         public PlexClientApi(HttpClient client, IBrowserOpener browserOpener)
         {
             this.browserOpener = browserOpener;
-            client.BaseAddress = new Uri("https://plex.tv/");
+            client.BaseAddress = new Uri("https://plex.tv");
             plexTvApiJson = RestService.For<IPlexTvApi>(client);
-            plexTvApiXml = RestService.For<IPlexTvApi>(client,new RefitSettings {
+            plexTvApiXml = RestService.For<IPlexTvApi>(client, new RefitSettings
+            {
                 ContentSerializer = new XmlContentSerializer(
                     new XmlContentSerializerSettings
                     {
@@ -34,7 +35,7 @@ namespace PlexApi
                             }
                         }
                     }
-                    )
+                )
             });
         }
 
@@ -66,8 +67,8 @@ namespace PlexApi
         public async Task<List<Server>> GetServers()
         {
             EnsureAuthenticated();
-            var serverList  = await this.plexTvApiXml.GetServers(this.plexAuthToken);
-            return null;
+            var serverList = await this.plexTvApiXml.GetServers(this.plexAuthToken);
+            return serverList.Servers;
         }
 
         private void EnsureAuthenticated()

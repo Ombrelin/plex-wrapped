@@ -37,16 +37,19 @@ namespace PlexApi.Test
         private HttpResponseMessage GetServers(string url)
         {
             Assert.Contains("X-Plex-Token=plexauthtoken", url);
-            return new HttpResponseMessage()
+            var response = new HttpResponseMessage()
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(@"
-                    <?xml version=""1.0"" encoding=""utf-16""?>
-                    <MediaContainer friendlyName=""myPlex"" identifier=""com.plexapp.plugins.myplex"" machineIdentifier=""c62be90a37d43ecd9596be8abd98a2e485979e31"" size=""2"">
-                      <Server accessToken=""plexauthtoken"" name=""VOSTOK"" address=""ip address"" port=""1"" version=""1.23.0.4497-a1b1f3c10"" scheme=""http"" host=""ip address"" localAddresses=""ipaddress1,ipaddress2"" machineIdentifier=""machineid"" createdAt=""1590584258"" updatedAt=""1621708154"" owned=""1"" synced=""0"" />
-                      </MediaContainer >
-                ")
+<?xml version=""1.0"" encoding=""utf-16""?>
+<MediaContainer friendlyName=""myPlex"" identifier=""com.plexapp.plugins.myplex"" machineIdentifier=""c62be90a37d43ecd9596be8abd98a2e485979e31"" size=""2"">
+  <Server accessToken=""token"" name=""VOSTOK"" address=""192.192.192.192"" port=""27914"" version=""1.23.0.4497-a1b1f3c10"" scheme=""http"" host=""192.192.192.192"" localAddresses=""192.192.192.192,192.192.192.192"" machineIdentifier=""id"" createdAt=""1590584258"" updatedAt=""1621879184"" owned=""1"" synced=""0"" />
+  <Server accessToken=""token"" name=""Serveur"" address=""192.192.192.192"" port=""16903"" version=""1.22.2.4282-a97b03fad"" scheme=""http"" host=""192.192.192.192"" localAddresses=""192.192.192.192"" machineIdentifier=""id"" createdAt=""1602353332"" updatedAt=""1618920935"" owned=""0"" synced=""0"" sourceTitle=""sebastien.cuvellier@hotmail.com"" ownerId=""16099445"" home=""0"" />
+</MediaContainer>
+")
             };
+            response.Headers.Add("ContentType","application/xml");
+            return response;
         }
 
         private HttpResponseMessage GetUser(string url)

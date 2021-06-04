@@ -1,4 +1,4 @@
 ﻿namespace PlexWrapped.Models
 {
-    public record MediaElement(string Name, string ThumbnailUrl);
+    public record MediaElement(string Name, string ThumbnailUrl, int Count);
 }

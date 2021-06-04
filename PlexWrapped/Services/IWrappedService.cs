@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PlexApi.Model;
 using PlexWrapped.Models;
 using TautulliApi.Model;
 
@@ -8,10 +9,13 @@ namespace PlexWrapped.Services
 {
     public interface IWrappedService
     {
-        Task<List<MediaElement>> GetMostPlayedArtists(int number);
-        Task<List<MediaElement>> GetMostPlayedMedias(int number);
-        Task<List<MediaElement>> GetMostPlayedDecades(int number);
-        Task<List<DayOfWeek>> GetDaysOfWeekWithMostPlays(int number);
-        Task<List<DayOfWeek>> GetHourOfDayWithMostPlays(int number);
+        List<MediaElement> GetMostPlayedArtists(int number);
+        List<MediaElement> GetMostPlayedMedias(int number);
+        List<MediaElement> GetMostPlayedDecades(int number);
+        List<DayOfWeek> GetDaysOfWeekWithMostPlays(int number);
+        List<DayOfWeek> GetHourOfDayWithMostPlays(int number);
+        Task LoadData(string user, int year, string mediaType);
+        Task<List<Server>> GetServers();
+        Server SelectedServer { get; set; }
     }
 }

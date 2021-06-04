@@ -33,7 +33,7 @@ namespace PlexWrapped.ViewModels
             this.plexApi = plexApi;
             HostScreen = hostScreen;
             FetchPlexUserCommand = ReactiveCommand.CreateFromTask(FetchPlexUser);
-            StartWrappedCommand = ReactiveCommand.Create(StartWrapped);
+            StartWrappedCommand = ReactiveCommand.CreateFromTask(StartWrapped);
             FetchPlexUserCommand.IsExecuting.ToProperty(this, x => x.IsFetchingPlexUser, out isFetchingPlexUser);
 
             FetchPlexUserCommand.Execute();
@@ -49,14 +49,20 @@ namespace PlexWrapped.ViewModels
             this.UserProfileImage = new Bitmap(new MemoryStream(client.DownloadData(profile.Thumb)));
         }
 
-        private void StartWrapped()
+        private async Task StartWrapped()
         {
             var tautulliApi = new TautulliApi.TautulliApi(
                 new HttpClient(),
                 "7ecb76ff5b314acd89122fa7e93262ce",
                 "https://tautulli.arsenelapostolet.fr/api/v2"
             );
-            HostScreen.Router.Navigate.Execute(new ArtistsViewModel(HostScreen,tautulliApi));
+
+            var servers = await plexApi.GetServers();
+            Console.WriteLine(servers.Count);
+            
+            var plays = await tautulliApi.GetPlaysHistory(UserFullname, 2021, "track");
+            Console.WriteLine(plays.Count);
+            //HostScreen.Router.Navigate.Execute(new ArtistsViewModel(HostScreen,tautulliApi));
         }
     }
 }

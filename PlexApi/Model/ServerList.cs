@@ -8,7 +8,7 @@ namespace PlexApi.Model
     {
         [XmlElement(ElementName="Server")] 
         public List<Server> Servers { get; set; } 
-
+        
         [XmlAttribute(AttributeName="friendlyName")] 
         public string FriendlyName { get; set; } 
 
@@ -17,7 +17,7 @@ namespace PlexApi.Model
 
         [XmlAttribute(AttributeName="machineIdentifier")] 
         public string MachineIdentifier { get; set; } 
-
+        
         [XmlAttribute(AttributeName="size")] 
         public int Size { get; set; }
     }
