@@ -18,7 +18,7 @@ namespace PlexApi.BrowserAuth
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     url = url.Replace("&", "^&");
-                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") {CreateNoWindow = true});
                 }
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
@@ -33,6 +33,7 @@ namespace PlexApi.BrowserAuth
                     throw;
                 }
             }
+
             return Task.CompletedTask;
         }
     }

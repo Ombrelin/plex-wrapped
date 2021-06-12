@@ -1,4 +1,3 @@
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Moq;
@@ -13,14 +12,14 @@ namespace PlexApi.Test
 
         public PlexApiTest()
         {
-            var browserOpenerMock  = new Mock<IBrowserOpener>();
+            var browserOpenerMock = new Mock<IBrowserOpener>();
             browserOpenerMock
                 .Setup(mock => mock.OpenBrowser(It.IsAny<string>()))
                 .Returns<string>(param => Task.CompletedTask);
 
             this.browserOpener = browserOpenerMock.Object;
         }
-        
+
         [Fact]
         public async Task Authenticate_ReturnsToken()
         {
@@ -28,17 +27,17 @@ namespace PlexApi.Test
             IPlexApi api = new PlexClientApi(new HttpClient(new PlexApiFakeHandler()), browserOpener);
 
             // When
-            var result = await api.Authenticate("AppName","clientUniqueId");
-            
+            var result = await api.Authenticate("AppName", "clientUniqueId");
+
             // Then
             Assert.Equal(123456789, result.Id);
-            Assert.Equal("azerty", result.Code );
+            Assert.Equal("azerty", result.Code);
             Assert.Equal("AppName", result.Product);
             Assert.Equal(false, result.Trusted);
             Assert.Equal("clientUniqueId", result.ClientIdentifier);
             Assert.Equal(1897, result.ExpiresIn);
-            Assert.Equal("plexauthtoken",result.AuthToken);
-            Assert.Equal(null,result.NewRegistration);
+            Assert.Equal("plexauthtoken", result.AuthToken);
+            Assert.Equal(null, result.NewRegistration);
         }
 
         [Fact]
@@ -46,20 +45,20 @@ namespace PlexApi.Test
         {
             // Given
             PlexClientApi api = new PlexClientApi(new HttpClient(new PlexApiFakeHandler()), browserOpener);
-            await api.Authenticate("AppName","clientUniqueId");
-            
+            await api.Authenticate("AppName", "clientUniqueId");
+
             // When
             var result = await api.GetProfile();
-            
+
             Assert.Equal(123456789, result.Id);
             Assert.Equal("plexauthtoken", result.AuthToken);
             Assert.Equal(false, result.Confirmed);
-            Assert.Equal("FR",result.Country);
+            Assert.Equal("FR", result.Country);
             Assert.Equal("user@provider.com", result.Email);
             Assert.Equal(false, result.Guest);
             Assert.Equal(true, result.Home);
             Assert.Equal("pinid", result.Pin);
-            Assert.Equal(true,result.Protected);
+            Assert.Equal(true, result.Protected);
             Assert.Equal(false, result.Restricted);
             Assert.Equal("thumbnail url", result.Thumb);
             Assert.Equal("User Full Name", result.Title);
@@ -67,7 +66,7 @@ namespace PlexApi.Test
             Assert.Equal(3, result.CertificateVersion);
             Assert.Equal(true, result.HasPassword);
             Assert.Equal(true, result.HomeAdmin);
-            Assert.Equal(5,result.HomeSize);
+            Assert.Equal(5, result.HomeSize);
             Assert.Equal("", result.ScrobbleTypes);
             Assert.Equal("Lifetime Plex Pass", result.SubscriptionDescription);
             Assert.Equal(false, result.EmailOnlyAuth);
@@ -82,24 +81,24 @@ namespace PlexApi.Test
         {
             // Given
             PlexClientApi api = new PlexClientApi(new HttpClient(new PlexApiFakeHandler()), browserOpener);
-            await api.Authenticate("AppName","clientUniqueId");
-            
+            await api.Authenticate("AppName", "clientUniqueId");
+
             // When
             var result = await api.GetServers();
-            
+
             // Then
             Assert.Single(result);
-            Assert.Equal("plexauthtoken",result[0].AccessToken);
-            Assert.Equal("VOSTOK",result[0].Name);
-            Assert.Equal("ip address",result[0].Address);
-            Assert.Equal(1,result[0].Port);
-            Assert.Equal("1.23.0.4497-a1b1f3c10",result[0].Version);
-            Assert.Equal("http",result[0].Scheme);
-            Assert.Equal("ip address",result[0].Host);
-            Assert.Equal("ipaddress1,ipaddress2",result[0].LocalAddresses);
-            Assert.Equal("machineid",result[0].MachineIdentifier);
-            Assert.Equal(1590584258,result[0].CreatedAt);
-            Assert.Equal(1621708154,result[0].UpdatedAt);
+            Assert.Equal("plexauthtoken", result[0].AccessToken);
+            Assert.Equal("VOSTOK", result[0].Name);
+            Assert.Equal("ip address", result[0].Address);
+            Assert.Equal(1, result[0].Port);
+            Assert.Equal("1.23.0.4497-a1b1f3c10", result[0].Version);
+            Assert.Equal("http", result[0].Scheme);
+            Assert.Equal("ip address", result[0].Host);
+            Assert.Equal("ipaddress1,ipaddress2", result[0].LocalAddresses);
+            Assert.Equal("machineid", result[0].MachineIdentifier);
+            Assert.Equal(1590584258, result[0].CreatedAt);
+            Assert.Equal(1621708154, result[0].UpdatedAt);
             Assert.True(result[0].IsOwned);
         }
     }

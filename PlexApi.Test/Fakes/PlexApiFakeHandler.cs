@@ -48,15 +48,14 @@ namespace PlexApi.Test
 </MediaContainer>
 ")
             };
-            response.Headers.Add("ContentType","application/xml");
+            response.Headers.Add("ContentType", "application/xml");
             return response;
         }
 
         private HttpResponseMessage GetUser(string url)
         {
-
             Assert.Contains("X-Plex-Token=plexauthtoken", url);
-            
+
             return new HttpResponseMessage()
             {
                 StatusCode = HttpStatusCode.OK,
@@ -88,8 +87,6 @@ namespace PlexApi.Test
                         MailingListStatus = "active",
                         MaxHomeSize = 15,
                         RememberExpiresAt = 1622209087
-
-
                     }))
             };
         }

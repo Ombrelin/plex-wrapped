@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reactive;
+﻿using System.Reactive;
 using System.Threading.Tasks;
 using PlexApi;
 using PlexWrapped.Services;
@@ -8,7 +7,7 @@ using Splat;
 
 namespace PlexWrapped.ViewModels
 {
-    public class PlexLoginViewModel: ReactiveObject, IRoutableViewModel
+    public class PlexLoginViewModel : ReactiveObject, IRoutableViewModel
     {
         public string? UrlPathSegment => "plexlogin";
         public IScreen HostScreen { get; }
@@ -17,7 +16,7 @@ namespace PlexWrapped.ViewModels
 
         private readonly ObservableAsPropertyHelper<bool> isLoggingIn;
         public bool IsLoggingIn => isLoggingIn.Value;
-        
+
         public PlexLoginViewModel(IScreen hostScreen, IPlexApi plexApi)
         {
             HostScreen = hostScreen;
@@ -31,7 +30,7 @@ namespace PlexWrapped.ViewModels
             await plexApi.Authenticate("PlexWrapped", "test");
             HostScreen.Router.Navigate.Execute(
                 new UserProfileViewModel(HostScreen, plexApi, Locator.Current.GetService<IWrappedService>())
-                );
+            );
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using PlexApi;
 using PlexApi.Model;
@@ -18,7 +17,7 @@ namespace PlexWrapped.Services
         public Server? SelectedServer { get; set; }
 
         private List<Play>? Data;
-        
+
         public WrappedService(IPlexApi plexApi, ITautulliApi tautulliApi)
         {
             this.plexApi = plexApi;
@@ -27,22 +26,30 @@ namespace PlexWrapped.Services
 
         public List<MediaElement> GetMostPlayedArtists(int number)
         {
-            using WebClient client = new();
             return this.Data
                 .Where(play => play.MediaType == "track")
                 .GroupBy(g => new {Name = g.GrandparentTitle, ThumbId = g.GrandparentRatingKey})
-                .Select(g =>  new MediaElement(g.Key.Name, GetArtistThumbnailAddress(g.Key.ThumbId),g.Count()))
+                .Select(g => new MediaElement(g.Key.Name, GetArtistThumbnailAddress(g.Key.ThumbId), g.Count()))
                 .OrderByDescending(artist => artist.Count)
                 .Take(number)
                 .ToList();
         }
 
-        private string GetArtistThumbnailAddress(int thumbId) => $"http://{SelectedServer.Address}:{SelectedServer.Port}/library/metadata/{thumbId}/thumb?X-Plex-Token={plexApi.PlexToken}";
-        private string GetMediaThumbnailAddress(string thumb) => $"https://{SelectedServer.Address}:{SelectedServer.Port}{thumb}";
+        private string GetArtistThumbnailAddress(int thumbId) =>
+            $"http://{SelectedServer.Address}:{SelectedServer.Port}/library/metadata/{thumbId}/thumb?X-Plex-Token={plexApi.PlexToken}";
+
+        private string GetMediaThumbnailAddress(string thumb) =>
+            $"http://{SelectedServer.Address}:{SelectedServer.Port}{thumb}?X-Plex-Token={plexApi.PlexToken}";
 
         public List<MediaElement> GetMostPlayedMedias(int number)
         {
-            throw new NotImplementedException();
+            return this.Data
+                .Where(play => play.MediaType == "track")
+                .GroupBy(g => new {Name = g.Title, Thumb = g.Thumb})
+                .Select(g => new MediaElement(g.Key.Name, GetMediaThumbnailAddress(g.Key.Thumb), g.Count()))
+                .OrderByDescending(artist => artist.Count)
+                .Take(number)
+                .ToList();
         }
 
         public List<MediaElement> GetMostPlayedDecades(int number)

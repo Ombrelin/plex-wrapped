@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Refit;
 using TautulliApi.Model;
 using TautulliApi.Tautulli;
@@ -32,7 +29,7 @@ namespace TautulliApi
         {
             var countResult = await tautulliApi.GetHistory(this.tautulliApiKey, username, 0, mediaType);
             var actualResult = await tautulliApi.GetHistory(
-                this.tautulliApiKey, 
+                this.tautulliApiKey,
                 username,
                 countResult.Response.Data.RecordsFiltered,
                 mediaType

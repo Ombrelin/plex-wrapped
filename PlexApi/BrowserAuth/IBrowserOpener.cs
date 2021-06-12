@@ -6,6 +6,4 @@ namespace PlexApi.BrowserAuth
     {
         Task OpenBrowser(string url);
     }
-
-
 }

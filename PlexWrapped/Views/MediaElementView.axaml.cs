@@ -1,5 +1,4 @@
 ﻿using System.Reactive.Disposables;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
@@ -12,7 +11,7 @@ namespace PlexWrapped.Views
         private TextBlock TitleTextBlock => this.FindControl<TextBlock>("Title");
         private TextBlock CountTextBlock => this.FindControl<TextBlock>("Count");
         private Image Thumbnail => this.FindControl<Image>("Thumbnail");
-        
+
         public MediaElementView()
         {
             this.WhenActivated(disposables =>
@@ -23,7 +22,7 @@ namespace PlexWrapped.Views
                     vm => vm.Title,
                     v => v.TitleTextBlock.Text
                 ).DisposeWith(disposables);
-                
+
                 // Count
                 this.OneWayBind(
                     ViewModel,
@@ -31,7 +30,7 @@ namespace PlexWrapped.Views
                     v => v.CountTextBlock.Text
                 ).DisposeWith(disposables);
 
-                
+
                 // Thumbnail
                 this.OneWayBind(
                     ViewModel,

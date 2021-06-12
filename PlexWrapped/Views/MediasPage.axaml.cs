@@ -1,4 +1,5 @@
 ﻿using System.Reactive.Disposables;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
@@ -7,28 +8,21 @@ using ReactiveUI;
 
 namespace PlexWrapped.Views
 {
-    public class ArtistsPage : ReactiveUserControl<ArtistsViewModel>
+    public class MediasPage : ReactiveUserControl<MediaPageViewModel>
     {
         private ItemsControl Items => this.FindControl<ItemsControl>("Items");
-        private Button NextButton => this.FindControl<Button>("Next");
 
-        public ArtistsPage()
+        
+        public MediasPage()
         {
-            // Items
             this.WhenActivated(disposables =>
             {
-                // Title
+                // Items
                 this.OneWayBind(
                     ViewModel,
-                    vm => vm.Artists,
+                    vm => vm.Medias,
                     v => v.Items.Items
                 ).DisposeWith(disposables);
-                
-                // Next button
-                this.BindCommand(
-                    ViewModel,
-                    vm => vm.NextCommand,
-                    v => v.NextButton);
             });
             InitializeComponent();
         }

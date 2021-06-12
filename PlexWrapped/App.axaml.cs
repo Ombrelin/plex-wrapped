@@ -9,7 +9,6 @@ using PlexWrapped.ViewModels;
 using PlexWrapped.Views;
 using ReactiveUI;
 using Splat;
-using TautulliApi;
 
 namespace PlexWrapped
 {
@@ -22,6 +21,7 @@ namespace PlexWrapped
             Locator.CurrentMutable.Register(() => new UserProfilePage(), typeof(IViewFor<UserProfileViewModel>));
             Locator.CurrentMutable.Register(() => new ArtistsPage(), typeof(IViewFor<ArtistsViewModel>));
             Locator.CurrentMutable.Register(() => new MediaElementView(), typeof(IViewFor<MediaElementViewModel>));
+            Locator.CurrentMutable.Register(() => new MediasPage(), typeof(IViewFor<MediaPageViewModel>));
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -34,7 +34,8 @@ namespace PlexWrapped
                     "7ecb76ff5b314acd89122fa7e93262ce",
                     "https://tautulli.arsenelapostolet.fr/api/v2"
                 );
-                Locator.CurrentMutable.RegisterLazySingleton(() => new WrappedService(plexApi, tautulliApi), typeof(IWrappedService));
+                Locator.CurrentMutable.RegisterLazySingleton(() => new WrappedService(plexApi, tautulliApi),
+                    typeof(IWrappedService));
                 desktop.MainWindow = new MainWindow
                 {
                     DataContext = new MainWindowViewModel(plexApi),

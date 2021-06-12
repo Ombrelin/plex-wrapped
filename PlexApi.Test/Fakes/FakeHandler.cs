@@ -6,7 +6,8 @@ namespace PlexApi.Test
 {
     public abstract class FakeHandler : HttpClientHandler
     {
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
             return Task.FromResult(SendAsync(request.Method, request.RequestUri.PathAndQuery));
         }

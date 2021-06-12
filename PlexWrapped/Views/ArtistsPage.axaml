@@ -6,11 +6,23 @@
                                 xmlns:viewModels="clr-namespace:PlexWrapped.ViewModels"
                                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                                 x:Class="PlexWrapped.Views.ArtistsPage">
-    <StackPanel Orientation="Vertical">
-        <TextBlock HorizontalAlignment="Center" FontSize="24">Artists</TextBlock>
-        
-        <ItemsControl HorizontalAlignment="Stretch" Name="Items">
-        </ItemsControl>
-    </StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center" FontSize="24">Artists</TextBlock>
+
+            <ItemsControl HorizontalAlignment="Stretch" Name="Items" />
+
+
+        </StackPanel>
+        <Button DockPanel.Dock="Bottom"
+                Margin="0,128,0,0"
+                HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                Background="#0066CC"
+                Width="200"
+                Name="Next">
+            Next
+        </Button>
+    </DockPanel>
+
 
 </reactiveUi:ReactiveUserControl>

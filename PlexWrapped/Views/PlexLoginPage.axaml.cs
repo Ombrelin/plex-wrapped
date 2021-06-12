@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using Avalonia;
+﻿using System.Reactive.Disposables;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
@@ -15,13 +12,14 @@ namespace PlexWrapped.Views
     {
         private Button SignInWithPlexButton => this.FindControl<Button>("SignInWithPlexButton");
         private ProgressRing Loader => this.FindControl<ProgressRing>("Loader");
+
         public PlexLoginPage()
         {
             this.WhenActivated(disposables =>
             {
                 this.BindCommand(ViewModel,
-                    vm => vm.PlexLoginCommand,
-                    v => v.SignInWithPlexButton)
+                        vm => vm.PlexLoginCommand,
+                        v => v.SignInWithPlexButton)
                     .DisposeWith(disposables);
 
                 this.OneWayBind(
@@ -29,18 +27,19 @@ namespace PlexWrapped.Views
                     vm => vm.IsLoggingIn,
                     v => v.SignInWithPlexButton.IsVisible,
                     NotConverter
-                    ).DisposeWith(disposables);
-                
+                ).DisposeWith(disposables);
+
                 this.OneWayBind(
-                    ViewModel,
-                    vm => vm.IsLoggingIn,
-                    v => v.Loader.IsVisible)
+                        ViewModel,
+                        vm => vm.IsLoggingIn,
+                        v => v.Loader.IsVisible)
                     .DisposeWith(disposables);
             });
             InitializeComponent();
         }
 
         private bool NotConverter(bool val) => !val;
+
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);

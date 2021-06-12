@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlexApi.Model;
 using PlexWrapped.Models;
-using TautulliApi.Model;
 
 namespace PlexWrapped.Services
 {

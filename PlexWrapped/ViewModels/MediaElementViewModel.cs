@@ -15,6 +15,7 @@ namespace PlexWrapped.Views
         public string Title => element.Name;
         public Bitmap Thumbnail;
         public string Count => element.Count.ToString();
+
         public MediaElementViewModel(MediaElement element)
         {
             this.element = element;

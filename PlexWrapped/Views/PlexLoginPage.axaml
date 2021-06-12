@@ -10,10 +10,10 @@
                                 Width="350" Height="750"
                                 MinWidth="350"
                                 x:Class="PlexWrapped.Views.PlexLoginPage">
-    <StackPanel  VerticalAlignment="Center"
-                 HorizontalAlignment="Center">
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Center">
         <Button
-           
+
             x:Name="SignInWithPlexButton">
             Sign In with PLEX
         </Button>

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TautulliApi.Model
+﻿namespace TautulliApi.Model
 {
     public class TautulliResponse
     {

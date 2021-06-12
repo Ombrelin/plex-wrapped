@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PlexApi;
+﻿using PlexApi;
 using ReactiveUI;
 
 namespace PlexWrapped.ViewModels
@@ -13,7 +10,7 @@ namespace PlexWrapped.ViewModels
 
         public MainWindowViewModel(IPlexApi plexApi)
         {
-            this.Router.Navigate.Execute(new PlexLoginViewModel(this,plexApi));
+            this.Router.Navigate.Execute(new PlexLoginViewModel(this, plexApi));
         }
     }
 }

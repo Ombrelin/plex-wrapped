@@ -9,14 +9,14 @@
     <Grid Margin="16,16,16,0" HorizontalAlignment="Stretch">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="0.7*" />
         </Grid.ColumnDefinitions>
-        
-        <Image Grid.Column="0" Width="64" Height="64" Name="Thumbnail"></Image>
-        <TextBlock Margin="8,0,0,0" TextTrimming="CharacterEllipsis" Grid.Column="1" VerticalAlignment="Center"  FontSize="16" Name="Title"></TextBlock>
-        <TextBlock   Grid.Column="2" VerticalAlignment="Center" FontSize="20" Name="Count" TextAlignment="Left">
-        </TextBlock>
+
+        <Image Grid.Column="0" Width="64" Height="64" Name="Thumbnail" />
+        <TextBlock Margin="8,0,0,0" TextTrimming="CharacterEllipsis" Grid.Column="1" VerticalAlignment="Center"
+                   FontSize="16" Name="Title" />
+        <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="20" Name="Count" TextAlignment="Left" />
     </Grid>
 </reactiveUi:ReactiveUserControl>

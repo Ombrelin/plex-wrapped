@@ -30,6 +30,7 @@ namespace TautulliApi.Model
         //public int ParentRatingKey { get; set; }
         [JsonProperty("grandparent_rating_key")]
         public int GrandparentRatingKey { get; set; }
+
         [JsonProperty("full_title")] public string FullTitle { get; set; }
         [JsonProperty("title")] public string Title { get; set; }
         [JsonProperty("parent_title")] public string ParentTitle { get; set; }
@@ -48,18 +49,15 @@ namespace TautulliApi.Model
         public string OriginallyAvailableAt { get; set; }
 
         public string Guid { get; set; }
-        [JsonProperty("transcode_decision")]
-        public string TranscodeDecision { get; set; }
-        [JsonProperty("percent_complete")]
-        public int PercentComplete { get; set; }
+        [JsonProperty("transcode_decision")] public string TranscodeDecision { get; set; }
+
+        [JsonProperty("percent_complete")] public int PercentComplete { get; set; }
+
         //[JsonProperty("watched_status")]
         //public int WatchedStatus { get; set; }
-        [JsonProperty("group_count")]
-        public int? GroupCount { get; set; }
-        [JsonProperty("group_ids")]
-        public string GroupIds { get; set; }
+        [JsonProperty("group_count")] public int? GroupCount { get; set; }
+        [JsonProperty("group_ids")] public string GroupIds { get; set; }
         public string State { get; set; }
-        [JsonProperty("session_key")]
-        public string SessionKey { get; set; }
+        [JsonProperty("session_key")] public string SessionKey { get; set; }
     }
 }

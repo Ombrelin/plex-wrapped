@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -51,9 +49,9 @@ namespace PlexWrapped.ViewModels
             FetchPlexUserCommand.IsExecuting.ToProperty(this, x => x.IsFetchingPlexUser, out isFetchingPlexUser);
 
             this.isAServerSelected = this.WhenAnyValue(x => x.SelectedSever)
-                .Select(v =>v != null)
+                .Select(v => v != null)
                 .ToProperty(this, x => x.IsAServerSelected);
-            
+
             FetchPlexUserCommand.Execute();
         }
 
@@ -89,7 +87,7 @@ namespace PlexWrapped.ViewModels
             var mediaType = MoviesEnabled ? "movie" : "track";
             wrappedService.SelectedServer = this.SelectedSever;
             await wrappedService.LoadData(this.UserFullname, DateTime.Today.Year, mediaType);
-            HostScreen.Router.Navigate.Execute(new ArtistsViewModel(HostScreen,wrappedService));
+            HostScreen.Router.Navigate.Execute(new ArtistsViewModel(HostScreen, wrappedService));
         }
     }
 }
