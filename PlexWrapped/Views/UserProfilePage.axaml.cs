@@ -18,6 +18,9 @@ namespace PlexWrapped.Views
         private Image ProfileImage => this.FindControl<Image>("ProfileImage");
         private ProgressRing Loader => this.FindControl<ProgressRing>("Loader");
         private Button StartButton => this.FindControl<Button>("StartButton");
+        private ListBox ServerListBox => this.FindControl<ListBox>("ServersListBox");
+        private RadioButton MoviesRadioButton => this.FindControl<RadioButton>("MoviesRadioButton");
+        private RadioButton TracksRadioButton => this.FindControl<RadioButton>("TracksRadioButton");
         public UserProfilePage()
         {
             this.WhenActivated(disposables =>
@@ -78,10 +81,32 @@ namespace PlexWrapped.Views
                     NotConverter
                 ).DisposeWith(disposables);
                 
+                this.OneWayBind(
+                    ViewModel,
+                    vm => vm.IsAServerSelected,
+                    v => v.StartButton.IsEnabled
+                ).DisposeWith(disposables);
+                
                 this.BindCommand(ViewModel,
                         vm => vm.StartWrappedCommand,
                         v => v.StartButton)
                     .DisposeWith(disposables);
+                
+                // Server ListBox
+                this.OneWayBind(
+                    ViewModel,
+                    vm => vm.Servers,
+                    v => v.ServerListBox.Items
+                ).DisposeWith(disposables);
+                this.Bind(
+                    ViewModel,
+                    vm => vm.SelectedSever,
+                    v => v.ServerListBox.SelectedItem
+                ).DisposeWith(disposables);
+                
+                // Radio Buttons
+                this.Bind(ViewModel, vm => vm.MoviesEnabled, v => v.MoviesRadioButton.IsChecked);
+                this.Bind(ViewModel, vm => vm.TracksEnabled, v => v.TracksRadioButton.IsChecked);
             });
             InitializeComponent();
         }

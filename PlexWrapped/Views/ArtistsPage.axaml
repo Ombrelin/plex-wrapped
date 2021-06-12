@@ -1,8 +1,16 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="PlexWrapped.Views.ArtistsPage">
-    Welcome to Avalonia!
-</UserControl>
+﻿<reactiveUi:ReactiveUserControl x:TypeArguments="viewModels:ArtistsViewModel" xmlns="https://github.com/avaloniaui"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:reactiveUi="http://reactiveui.net"
+                                xmlns:viewModels="clr-namespace:PlexWrapped.ViewModels"
+                                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                                x:Class="PlexWrapped.Views.ArtistsPage">
+    <StackPanel Orientation="Vertical">
+        <TextBlock HorizontalAlignment="Center" FontSize="24">Artists</TextBlock>
+        
+        <ItemsControl HorizontalAlignment="Stretch" Name="Items">
+        </ItemsControl>
+    </StackPanel>
+
+</reactiveUi:ReactiveUserControl>

@@ -10,5 +10,6 @@ namespace PlexApi
         Task<PlexAuth> Authenticate(string productName, string clientId);
         Task<PlexUserProfile> GetProfile();
         Task<List<Server>> GetServers();
+        string PlexToken { get; }
     }
 }

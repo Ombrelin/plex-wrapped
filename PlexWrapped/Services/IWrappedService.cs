@@ -16,6 +16,6 @@ namespace PlexWrapped.Services
         List<DayOfWeek> GetHourOfDayWithMostPlays(int number);
         Task LoadData(string user, int year, string mediaType);
         Task<List<Server>> GetServers();
-        Server SelectedServer { get; set; }
+        Server? SelectedServer { get; set; }
     }
 }

@@ -1,47 +1,78 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:avaloniaProgressRing="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="PlexWrapped.Views.UserProfilePage">
-    
-    <StackPanel  VerticalAlignment="Center"
-                 HorizontalAlignment="Center">
+﻿<reactiveUi:ReactiveUserControl x:TypeArguments="viewModels:UserProfileViewModel" xmlns="https://github.com/avaloniaui"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:avaloniaProgressRing="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
+                                xmlns:reactiveUi="http://reactiveui.net"
+                                xmlns:viewModels="clr-namespace:PlexWrapped.ViewModels"
+                                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                                x:Class="PlexWrapped.Views.UserProfilePage">
+
+    <StackPanel
+        Spacing="16"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center">
         <TextBlock
-            TextAlignment="Center"
-        >
+            TextAlignment="Center">
             You are logged in as :
         </TextBlock>
-        <TextBlock
-            TextAlignment="Center"
-            x:Name="UsernameTextBlock">
-        </TextBlock>
-        <TextBlock
-            TextAlignment="Center"
-            x:Name="UserEmailTextBlock">
-        </TextBlock>
+        <StackPanel Orientation="Vertical">
+            <TextBlock
+                TextAlignment="Center"
+                x:Name="UsernameTextBlock" />
+            <TextBlock
+                TextAlignment="Center"
+                x:Name="UserEmailTextBlock" />
+        </StackPanel>
         <Image
             Width="100"
             Height="100"
-            x:Name="ProfileImage"
-        ></Image>
+            x:Name="ProfileImage" />
         <avaloniaProgressRing:ProgressRing
             x:Name="Loader"
             Width="40"
             Height="40"
             IsActive="True"
             Foreground="#0066CC" />
+        <TextBlock
+            TextAlignment="Center">
+            Choose a server :
+        </TextBlock>
+        <ListBox SelectionMode="Single"
+                 x:Name="ServersListBox" Grid.ColumnSpan="3"
+                 Grid.Row="1" Margin="0,6,0,0"
+                 HorizontalAlignment="Stretch"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock
+            TextAlignment="Center">
+            Choose a Media Type :
+        </TextBlock>
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+            <RadioButton Name="MoviesRadioButton" GroupName="MediaType">
+                Movies
+            </RadioButton>
+            <RadioButton Name="TracksRadioButton" GroupName="MediaType">
+                Tracks
+            </RadioButton>
+        </StackPanel>
+
         <Button
             VerticalAlignment="Center"
-           Margin="0,16,0,0"
+            Margin="0,16,0,0"
             Background="#0066CC"
             Width="200"
-            
+
             x:Name="StartButton">
             <TextBlock TextAlignment="Center">Start Wrapped</TextBlock>
-            
+
         </Button>
+
     </StackPanel>
-    
-</UserControl>
+
+</reactiveUi:ReactiveUserControl>

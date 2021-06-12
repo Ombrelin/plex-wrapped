@@ -5,7 +5,9 @@ using ReactiveUI;
 
 namespace PlexWrapped.ViewModels
 {
-    public class ViewModelBase : ReactiveObject
+    public abstract class ViewModelBase : ReactiveObject,IRoutableViewModel
     {
+        public abstract string? UrlPathSegment { get; }
+        public IScreen HostScreen { get; }
     }
 }

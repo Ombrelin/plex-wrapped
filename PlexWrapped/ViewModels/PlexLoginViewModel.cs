@@ -2,7 +2,9 @@
 using System.Reactive;
 using System.Threading.Tasks;
 using PlexApi;
+using PlexWrapped.Services;
 using ReactiveUI;
+using Splat;
 
 namespace PlexWrapped.ViewModels
 {
@@ -27,7 +29,9 @@ namespace PlexWrapped.ViewModels
         private async Task PlexLogin()
         {
             await plexApi.Authenticate("PlexWrapped", "test");
-            HostScreen.Router.Navigate.Execute(new UserProfileViewModel(HostScreen, plexApi));
+            HostScreen.Router.Navigate.Execute(
+                new UserProfileViewModel(HostScreen, plexApi, Locator.Current.GetService<IWrappedService>())
+                );
         }
     }
 }

@@ -71,6 +71,8 @@ namespace PlexApi
             return serverList.Servers;
         }
 
+        public string PlexToken => plexAuthToken;
+
         private void EnsureAuthenticated()
         {
             if (this.plexAuthToken is null)

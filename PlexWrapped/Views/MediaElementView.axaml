@@ -1,0 +1,22 @@
+﻿<reactiveUi:ReactiveUserControl x:TypeArguments="views:MediaElementViewModel" xmlns="https://github.com/avaloniaui"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:reactiveUi="http://reactiveui.net"
+                                xmlns:views="clr-namespace:PlexWrapped.Views"
+                                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                                x:Class="PlexWrapped.Views.MediaElementView">
+    <Grid Margin="16,16,16,0" HorizontalAlignment="Stretch">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Image Grid.Column="0" Width="64" Height="64" Name="Thumbnail"></Image>
+        <TextBlock Margin="8,0,0,0" TextTrimming="CharacterEllipsis" Grid.Column="1" VerticalAlignment="Center"  FontSize="16" Name="Title"></TextBlock>
+        <TextBlock   Grid.Column="2" VerticalAlignment="Center" FontSize="20" Name="Count" TextAlignment="Left">
+        </TextBlock>
+    </Grid>
+</reactiveUi:ReactiveUserControl>
